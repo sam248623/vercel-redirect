@@ -19,7 +19,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 				permanent: false,
 				destination: `${
 					'https://thoughts4world.site/') + encodeURI(path as string)
-				}`,
+				},
 			},
 		};
 	}
