@@ -1,0 +1,7 @@
+"redirects": [
+{
+"source": "/post/:slug*",
+"destination": "https://thoughts4world.site/:slug*",
+"permanent": true
+}
+]
