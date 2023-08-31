@@ -14,15 +14,15 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
 	// redirect if facebook is the referer or request contains fbclid
 	if (referringURL?.includes('facebook.com') || fbclid) {
-		return {
-			redirect: {
-				permanent: false,
-				destination: `${
-					'https://thoughts4world.site/' + encodeURI(path as string)
-				}',
-			},
-		};
-	}
+		return{
+"redirects": [
+{
+"source": "/post/:slug*",
+"destination": "https://thoughts4world.site//:slug*",
+"permanent": true
+}
+]
+}
 	const query = gql`
 		{
 			post(id: "/${path}/", idType: URI) {
