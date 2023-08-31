@@ -1,8 +1,3 @@
-import React from 'react';
-import Head from 'next/head';
-import { GetServerSideProps } from 'next';
-import { GraphQLClient, gql } from 'graphql-request';
-
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
 	const endpoint = "https://thoughts4world.site/graphql"
 	const graphQLClient = new GraphQLClient(endpoint);
@@ -14,15 +9,17 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
 	// redirect if facebook is the referer or request contains fbclid
 	if (referringURL?.includes('facebook.com') || fbclid) {
-		return{
-"redirects": [
-{
-"source": "/post/:slug*",
-"destination": "https://thoughts4world.site//:slug*",
-"permanent": true
-}
-]
-}
+		return {
+			redirects: [
+				{
+					source: "/post/:slug*",
+					destination: "https://thoughts4world.site//:slug*",
+					permanent: true,
+				},
+			],
+		};
+	} // <-- Missing closing brace for the if block
+
 	const query = gql`
 		{
 			post(id: "/${path}/", idType: URI) {
